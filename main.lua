@@ -268,6 +268,12 @@ local function CheckBossQuest()
         end
     end
     if LevelReqBoss == -999 then
+        OrionLib:MakeNotification({
+            Name = "Status",
+            Content = "No Quest Boss Found",
+            Image = "rbxassetid://4483345998",
+            Time = 1
+        })
         return NameQuestBoss, QuestBossNumber, CFrameQuestBoss, NameBoss, CFrameBoss, LevelReqBoss
     end
     for i,v in pairs(Quests) do

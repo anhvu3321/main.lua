@@ -39,6 +39,16 @@ local function CheckBossQuest()
             MaxLevelReqCurrentSea = math.max(d, MaxLevelReqCurrentSea)
         end
     end
-    print(NameQuest, QuestNumber, CFrameQuest, NameBoss, LevelReq)
+    if not CFrameBoss then
+        pcall(function()
+            CFrameBoss = CFrame.new(game:GetService("ReplicatedStorage"):FindFirstChild(NameBoss).WorldPivot.Position) * CFrame.new(0, 30, 0)
+        end)
+    end
+    if not CFrameBoss then
+        pcall(function()
+            CFrameBoss = game:GetService("Workspace").Enemies:FindFirstChild(NameBoss):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 30, 0)
+        end)
+    end
+    print(NameQuest, QuestNumber, CFrameQuest, NameBoss, CFrameBoss)
 end
 CheckBossQuest()

@@ -39,6 +39,6 @@ local function CheckBossQuest()
             MaxLevelReqCurrentSea = math.max(d, MaxLevelReqCurrentSea)
         end
     end
-    print(NameQuest, QuestNumber, CFrameQuest, NameBoss)
+    print(NameQuest, QuestNumber, CFrameQuest, NameBoss, LevelReq)
 end
 CheckBossQuest()

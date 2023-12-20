@@ -16,7 +16,6 @@ local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shle
 
 -- Variables
 local CFrame_Mobs = {
-    ["Trainee"] = CFrame.new(1045.962646484375, 27.00250816345215, 1560.8203125),
     ["Bandit"] = CFrame.new(1045.962646484375, 27.00250816345215, 1560.8203125),
     ["Monkey"] = CFrame.new(-1448.51806640625, 67.85301208496094, 11.46579647064209),
     ["Gorilla"] = CFrame.new(-1129.8836669921875, 40.46354675292969, -525.4237060546875),

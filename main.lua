@@ -16,6 +16,7 @@ local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shle
 
 -- Variables
 local CFrame_Mobs = {
+    ["Trainee"] = CFrame.new(1045.962646484375, 27.00250816345215, 1560.8203125),
     ["Bandit"] = CFrame.new(1045.962646484375, 27.00250816345215, 1560.8203125),
     ["Monkey"] = CFrame.new(-1448.51806640625, 67.85301208496094, 11.46579647064209),
     ["Gorilla"] = CFrame.new(-1129.8836669921875, 40.46354675292969, -525.4237060546875),
@@ -268,12 +269,6 @@ local function CheckBossQuest()
         end
     end
     if LevelReqBoss == -999 then
-        OrionLib:MakeNotification({
-            Name = "Status",
-            Content = "No Quest Boss Found",
-            Image = "rbxassetid://4483345998",
-            Time = 1
-        })
         return NameQuestBoss, QuestBossNumber, CFrameQuestBoss, NameBoss, CFrameBoss, LevelReqBoss
     end
     for i,v in pairs(Quests) do
@@ -622,7 +617,7 @@ local function BringMob(PosMon, NameMon)
 end
 local function AutoFarmLevel()
     if not queue:empty() and queue:top() == "Auto Farm Level" and getgenv().Weapon ~= nil then
-        -- pcall(function()
+        pcall(function()
             local NameQuest, QuestNumber, CFrameQuest, NameMob, CFrameMon, LevelReq = CheckQuest()
             local NameQuestBoss, QuestBossNumber, CFrameQuestBoss, NameBoss, CFrameBoss, LevelReqBoss = CheckBossQuest()
             if LevelReqBoss > LevelReq and CFrameBoss ~= nil then
@@ -783,7 +778,7 @@ local function AutoFarmLevel()
                     until v:FindFirstChild("Humanoid").Health <= 0
                 end
             end
-        -- end)
+        end)
     elseif not queue:empty() and queue:top() == "Auto Farm Level" and getgenv().Weapon == nil then
         OrionLib:MakeNotification({
             Name = "Error",

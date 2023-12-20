@@ -268,7 +268,7 @@ local function CheckBossQuest()
         end
     end
     if LevelReqBoss == -999 then
-        return NameQuestBoss, QuestBossNumber, CFrameQuestBoss, NameBoss, CFrameBoss, LevelReqBoss
+        return nil, nil, nil, nil, nil, -999
     end
     for i,v in pairs(Quests) do
         for i1,v1 in pairs(v) do

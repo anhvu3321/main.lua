@@ -212,11 +212,25 @@ local function UpdateWeapon()
                                 Time = 5
                             })
                         end
+                    else
+                        OrionLib:MakeNotification({
+                            Name = "Error",
+                            Content = "Fruit not found!",
+                            Image = "rbxassetid://4483345998",
+                            Time = 5
+                        })
                     end
                 else
                     if string.find(v.ToolTip, getgenv().Weapon_Type) then
                         getgenv().Weapon = v.Name
                         return
+                    else
+                        OrionLib:MakeNotification({
+                            Name = "Error",
+                            Content = tostring(getgenv().Weapon_Type) .. " not found!",
+                            Image = "rbxassetid://4483345998",
+                            Time = 5
+                        })
                     end
                 end
             end

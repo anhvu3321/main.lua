@@ -622,7 +622,7 @@ local function BringMob(PosMon, NameMon)
 end
 local function AutoFarmLevel()
     if not queue:empty() and queue:top() == "Auto Farm Level" and getgenv().Weapon ~= nil then
-        pcall(function()
+        -- pcall(function()
             local NameQuest, QuestNumber, CFrameQuest, NameMob, CFrameMon, LevelReq = CheckQuest()
             local NameQuestBoss, QuestBossNumber, CFrameQuestBoss, NameBoss, CFrameBoss, LevelReqBoss = CheckBossQuest()
             if LevelReqBoss > LevelReq and CFrameBoss ~= nil then
@@ -783,7 +783,7 @@ local function AutoFarmLevel()
                     until v:FindFirstChild("Humanoid").Health <= 0
                 end
             end
-        end)
+        -- end)
     elseif not queue:empty() and queue:top() == "Auto Farm Level" and getgenv().Weapon == nil then
         OrionLib:MakeNotification({
             Name = "Error",

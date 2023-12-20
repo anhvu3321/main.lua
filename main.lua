@@ -1,12 +1,11 @@
 local function CheckBossQuest()
     local Level = game:GetService("Players").LocalPlayer.Data.Level.Value
-    local NameMob = nil
+    local NameBoss = nil
     local QuestNumber = nil
     local NameQuest = nil
-    local CFrameMon = nil
+    local CFrameBoss = nil
     local CFrameQuest = nil
     local LevelReq = -999
-    local RNameMob = nil
     local Quests = require(game:GetService("ReplicatedStorage").Quests)
     local GuideModule = require(game:GetService("ReplicatedStorage").GuideModule)
     local MaxLevelReqCurrentSea = -999
@@ -25,14 +24,21 @@ local function CheckBossQuest()
         for i1,v1 in pairs(v) do
             if i ~= "CitizenQuest" and i ~= "BartiloQuest" and v1["LevelReq"] == LevelReq then
                 for i2,v2 in pairs(v1["Task"]) do
-                    RNameMob = i2 .. " [Lv. ".. v1["LevelReq"] .. "]"
-                    NameMob = i2
+                    NameBoss = i2
                     QuestNumber = i1
                     NameQuest = i
                 end
             end
         end
     end
-    print(NameQuest, QuestNumber, CFrameQuest, NameMob)
+    for a,b in pairs(GuideModule["Data"]["NPCList"]) do
+        for c,d in pairs(b["Levels"]) do
+            if LevelReq == d then
+                CFrameQuest = a["CFrame"]
+            end
+            MaxLevelReqCurrentSea = math.max(d, MaxLevelReqCurrentSea)
+        end
+    end
+    print(NameQuest, QuestNumber, CFrameQuest, NameBoss)
 end
 CheckBossQuest()

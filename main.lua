@@ -64,7 +64,31 @@ getgenv().Configs = {
     }
 }
 
--- Functions
+local request_places = {}
+if game.PlaceId == 2753915549 then
+    request_places = {
+        ["Whirl Pool"] = CFrame.new(3864.6884765625, 6.736950397491455, -1926.214111328125),
+        ["Sky Area 1"] = CFrame.new(-4607.82275, 872.54248, -1667.55688),
+        ["Sky Area 2"] = CFrame.new(-7894.61767578125, 5547.1416015625, -380.29119873046875),
+        ["Fish Man"] = CFrame.new(61163.8515625, 11.6796875, 1819.7841796875)
+    }
+elseif game.PlaceId == 4442272183 then
+    request_places = {
+        ["Swan's room"] = CFrame.new(2284.912109375, 15.152046203613281, 905.48291015625),
+        ["Mansion"] = CFrame.new(-288.46246337890625, 306.130615234375, 597.9988403320312),
+        ["Ghost Ship"] = CFrame.new(923.21252441406, 126.9760055542, 32852.83203125),
+        ["Ghost Ship Entrance"] = CFrame.new(-6508.5581054688, 89.034996032715, -132.83953857422)
+    }
+elseif game.PlaceId == 7449423635 then
+    request_places = {
+        ["Castle on the sea"] = CFrame.new(-5075.50927734375, 314.5155029296875, -3150.0224609375),
+        ["Mansion"] = CFrame.new(-12548.998046875, 332.40396118164, -7603.1865234375),
+        ["Hydra Island"] = CFrame.new(5753.5478515625, 610.7880859375, -282.33172607421875),
+        ["Temple Of Time"] = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875),
+        ["Beautiful Pirate Entrance"] = CFrame.new(-11993.580078125, 334.7812805175781, -8844.1826171875),
+        ["Beautiful Pirate Place"] = CFrame.new(5314.58203125, 25.419387817382812, -125.94227600097656)
+    }
+end
 local plr = game:GetService("Players").LocalPlayer
 local CbFw = getupvalues(require(plr.PlayerScripts.CombatFramework))
 local CbFw2 = CbFw[2]
@@ -142,43 +166,6 @@ local function Buso()
     if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
     end
-end
-local function tween(place)
-    local player = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-    if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Sit == true then
-        game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Sit = false
-    end
-    if W then
-        if (place.Position -  game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude > 10000 and (Vector3.new(61163.8515625, 11.6796875, 1819.7841796875) - player.Position).Magnitude < 10000 then
-            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
-        end
-    elseif W2 then
-        if (place.Position -  game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude > 10000 and (Vector3.new(923.21252441406, 126.9760055542, 32852.83203125) - player.Position).Magnitude < 10000 then
-            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-6508, 89, -132))
-        end
-    end
-    local Distance = (place.Position -  game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
-    local speed = 300
-    if Distance < 250 then
-        speed = 4000
-    elseif Distance < 500 then
-        speed = 550
-    elseif Distance < 1000 then
-        speed = 400
-    elseif Distance >= 1000 then
-        speed = 300
-    end
-	local TweenService = game:GetService("TweenService")
-	local start =  game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position
-	local _end = place.Position
-	local distance = (start - _end).Magnitude
-	local _time = distance/(speed)
-	local info = TweenInfo.new(
-		_time,
-		Enum.EasingStyle.Linear
-	)
-	local tp = TweenService:Create( game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart"), info, {CFrame = place})
-	return tp
 end
 local function AddVelocity()
     if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Xero") then
@@ -391,59 +378,117 @@ local function SwordSkill(Pos)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
     end
 end
-
+local function tween(place, item)
+    repeat wait()
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health <= 0 then
+            repeat wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0
+            AddVelocity()
+        end
+        local request_place = CheckNearestRequestIsland(place)
+        if request_place ~= nil then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", request_places[request_place].Position)
+        end
+        local player = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Sit == true then
+            game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Sit = false
+        end
+        AddVelocity()
+        NoClip()
+        local Distance = (place.Position - player.Position).Magnitude
+        local speed = 300
+        if Distance < 250 then
+            speed = 5000
+        elseif Distance < 500 then
+            speed = 450
+        elseif Distance < 1000 then
+            speed = 350
+        elseif Distance >= 1000 then
+            speed = 300
+        end
+        local TweenService = game:GetService("TweenService")
+        local start = player.Position
+        local _end = place.Position
+        local distance = (start - _end).Magnitude
+        local _time = distance/(speed)
+        local info = TweenInfo.new(
+            _time,
+            Enum.EasingStyle.Linear
+        )
+        Tween = TweenService:Create(player, info, {CFrame = place})
+        Tween:Play()
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health <= 0 then
+            repeat wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0
+            AddVelocity()
+        end
+        if Stop_Tween then
+            break
+        end
+        if item ~= nil then
+            if item == "Third Sea" then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+            elseif not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(item) and not game:GetService("Players").LocalPlayer.Character:FindFirstChild(item) then
+                StopTween()
+                break
+            end
+        end
+    until Distance <= 30
+    RemoveVelocity()
+end
+local function StopTween()
+    Stop_Tween = true
+    if Tween ~= nil then
+        repeat wait()
+            if Tween.PlaybackState == Enum.PlaybackState.Playing then
+                Tween:Cancel()
+            end
+        until Tween.PlaybackState ~= Enum.PlaybackState.Playing
+    end
+    RemoveVelocity()
+    Stop_Tween = false
+end
 -- Run main
 callhook()
-local target = "belguudei999"
-local player = game:GetService("Players").LocalPlayer
-local Tween = nil
+local target
+for _, v in pairs(game:GetService("Players"):GetChildren()) do
+    if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+        target = v.Name
+    end
+end
 local click_time = 0.1
-if game:GetService("Players"):FindFirstChild(target) then
-    repeat wait(0.01)
-        pcall(function()
-            AddVelocity()
-            Buso()
-            NoClip()
-            Tween = tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-10, 10), 8, math.random(-10, 10)))
-            Tween:Play()
-            if (game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude <= 100 then
-                if getgenv().Configs.Weapons["Melee"].Enable then
-                    local duration = getgenv().Configs.Weapons["Melee"].Delay
-                    local start = tick()
-                    while wait(click_time) do
-                        if tick() - start <= duration then
-                            print(tick() - start)
-                            Tween = tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-10, 10), 8, math.random(-10, 10)))
-                            Tween:Play()
-                            AttackNoCD()
-                            MeleeSkill(game:GetService("Players"):FindFirstChild(target).Character)
-                        end
-                    end
-                end
-                if getgenv().Configs.Weapons["Blox Fruit"].Enable then
-                    local duration = getgenv().Configs.Weapons["Blox Fruit"].Delay
-                    local start = tick()
-                    if tick() - start <= duration then
-                        print(tick() - start)
-                        Tween = tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame * CFrame.new(0, 8, 0))
-                        Tween:Play()
-                        FruitSkill(game:GetService("Players"):FindFirstChild(target).Character)
-                    end
-                end
-                if getgenv().Configs.Weapons["Sword"].Enable then
-                    local duration = getgenv().Configs.Weapons["Sword"].Delay
-                    local start = tick()
-                    while wait(click_time) do
-                        if tick() - start <= duration then
-                            print(tick() - start)
-                            Tween = tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame * CFrame.new(0, 8, 0))
-                            Tween:Play()
-                            AttackNoCD()
-                            SwordSkill(game:GetService("Players"):FindFirstChild(target).Character)
-                        end
-                    end
+local player = game:GetService("Players").LocalPlayer
+repeat wait()
+    pcall(function()
+        Buso()
+        tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
+        if getgenv().Configs.Weapons["Melee"].Enable then
+            local duration = getgenv().Configs.Weapons["Melee"].Delay
+            local start = tick()
+            while wait(click_time) do
+                if tick() - start <= duration then
+                    tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
+                    AttackNoCD()
+                    MeleeSkill(game:GetService("Players"):FindFirstChild(target).Character)
                 end
             end
-        end)
-    until player.Character.Humanoid.Health <= 0 or game:GetService("Players"):FindFirstChild(target).Character.Humanoid.Health <= 0
-end
+        end
+        if getgenv().Configs.Weapons["Blox Fruit"].Enable then
+            local duration = getgenv().Configs.Weapons["Blox Fruit"].Delay
+            local start = tick()
+            if tick() - start <= duration then
+                tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
+                FruitSkill(game:GetService("Players"):FindFirstChild(target).Character)
+            end
+        end
+        if getgenv().Configs.Weapons["Sword"].Enable then
+            local duration = getgenv().Configs.Weapons["Sword"].Delay
+            local start = tick()
+            while wait(click_time) do
+                if tick() - start <= duration then
+                    tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
+                    AttackNoCD()
+                    SwordSkill(game:GetService("Players"):FindFirstChild(target).Character)
+                end
+            end
+        end
+    end)
+until player.Character.Humanoid.Health <= 0 or game:GetService("Players"):FindFirstChild(target).Character.Humanoid.Health <= 0

@@ -1417,6 +1417,12 @@ local function AutoFarmBoss(boss)
             })
             return
         end
+        OrionLib:MakeNotification({
+            Name = "Status",
+            Content = "Boss found!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
         tween(CFrameBoss * CFrame.new(0, 30, 0))
         if queue:empty() or queue:top() ~= "Auto Farm Boss" then
             return

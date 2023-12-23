@@ -472,36 +472,38 @@ print("Target: " .. target)
 local click_time = 0.1
 local player = game:GetService("Players").LocalPlayer
 repeat wait()
-    Buso()
-    tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
-    if getgenv().Configs.Weapons["Melee"].Enable then
-        local duration = getgenv().Configs.Weapons["Melee"].Delay
-        local start = tick()
-        while wait(click_time) do
-            if tick() - start <= duration then
-                tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
-                AttackNoCD()
-                MeleeSkill(game:GetService("Players"):FindFirstChild(target).Character)
+    pcall(function()
+        Buso()
+        tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
+        if getgenv().Configs.Weapons["Melee"].Enable then
+            local duration = getgenv().Configs.Weapons["Melee"].Delay
+            local start = tick()
+            while wait(click_time) do
+                if tick() - start <= duration then
+                    tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
+                    AttackNoCD()
+                    MeleeSkill(game:GetService("Players"):FindFirstChild(target).Character)
+                end
             end
         end
-    end
-    if getgenv().Configs.Weapons["Blox Fruit"].Enable then
-        local duration = getgenv().Configs.Weapons["Blox Fruit"].Delay
-        local start = tick()
-        if tick() - start <= duration then
-            tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
-            FruitSkill(game:GetService("Players"):FindFirstChild(target).Character)
-        end
-    end
-    if getgenv().Configs.Weapons["Sword"].Enable then
-        local duration = getgenv().Configs.Weapons["Sword"].Delay
-        local start = tick()
-        while wait(click_time) do
+        if getgenv().Configs.Weapons["Blox Fruit"].Enable then
+            local duration = getgenv().Configs.Weapons["Blox Fruit"].Delay
+            local start = tick()
             if tick() - start <= duration then
                 tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
-                AttackNoCD()
-                SwordSkill(game:GetService("Players"):FindFirstChild(target).Character)
+                FruitSkill(game:GetService("Players"):FindFirstChild(target).Character)
             end
         end
-    end
+        if getgenv().Configs.Weapons["Sword"].Enable then
+            local duration = getgenv().Configs.Weapons["Sword"].Delay
+            local start = tick()
+            while wait(click_time) do
+                if tick() - start <= duration then
+                    tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
+                    AttackNoCD()
+                    SwordSkill(game:GetService("Players"):FindFirstChild(target).Character)
+                end
+            end
+        end
+    end)
 until player.Character.Humanoid.Health <= 0 or game:GetService("Players"):FindFirstChild(target).Character.Humanoid.Health <= 0

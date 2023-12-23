@@ -450,13 +450,14 @@ local function tween(place, item)
 end
 -- Run main
 callhook()
-local target
+local target_list = {}
 for _, v in pairs(game:GetService("Players"):GetChildren()) do
     if v.Name ~= game:GetService("Players").LocalPlayer.Name then
-        target = v.Name
+        table.insert(target_list, v.Name)
         break
     end
 end
+local target = target_list[math.random(1, #target_list)]
 print("Target: " .. target)
 local click_time = 0.1
 local player = game:GetService("Players").LocalPlayer

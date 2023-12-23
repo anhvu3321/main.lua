@@ -292,18 +292,21 @@ local function MeleeSkill(Pos)
     if usez and skill_.Z.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(Pos,"Z")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
+        repeat wait() until not game:GetService("Players").LocalPlayer.Character.Busy.Value
         wait(holdz)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
     end
     if usex and skill_.X.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(Pos,"X")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
+        repeat wait() until not game:GetService("Players").LocalPlayer.Character.Busy.Value
         wait(holdx)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
     end
     if usec and skill_.C.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(Pos,"C")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"C",false,game)
+        repeat wait() until not game:GetService("Players").LocalPlayer.Character.Busy.Value
         wait(holdc)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
     end
@@ -327,30 +330,35 @@ local function FruitSkill(Pos)
     if usez and skill_.Z.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(Pos,"Z")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
+        repeat wait() until not game:GetService("Players").LocalPlayer.Character.Busy.Value
         wait(holdz)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
     end
     if usex and skill_.X.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(Pos,"X")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
+        repeat wait() until not game:GetService("Players").LocalPlayer.Character.Busy.Value
         wait(holdx)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
     end
     if usec and skill_.C.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(Pos,"C")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"C",false,game)
+        repeat wait() until not game:GetService("Players").LocalPlayer.Character.Busy.Value
         wait(holdc)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
     end
     if usev and skill_.V.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(Pos,"V")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"V",false,game)
+        repeat wait() until not game:GetService("Players").LocalPlayer.Character.Busy.Value
         wait(holdv)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"V",false,game)
     end
     if usef and skill_.F.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(Pos,"F")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"F",false,game)
+        repeat wait() until not game:GetService("Players").LocalPlayer.Character.Busy.Value
         wait(holdf)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"F",false,game)
     end
@@ -368,12 +376,14 @@ local function SwordSkill(Pos)
     if usez and skill_.Z.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(Pos,"Z")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
+        repeat wait() until not game:GetService("Players").LocalPlayer.Character.Busy.Value
         wait(holdz)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
     end
     if usex and skill_.X.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(Pos,"X")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
+        repeat wait() until not game:GetService("Players").LocalPlayer.Character.Busy.Value
         wait(holdx)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
     end

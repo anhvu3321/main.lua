@@ -1,4 +1,4 @@
-print("Script executed")
+print("Loop Script executed")
 while wait() do
     for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Notifications"):GetChildren()) do
         if v:IsA("TextLabel") and v.Name == "NotificationTemplate" then

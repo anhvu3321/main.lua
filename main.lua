@@ -105,6 +105,10 @@ local function GetCurrentBlade()
     while ret.Parent~=game:GetService("Players").LocalPlayer.Character do ret=ret.Parent end
     return ret
 end
+local function click_attack()
+    game:GetService'VirtualUser':CaptureController()
+    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+end
 local function AttackNoCD()
     local Fast = getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework))
     local y = Fast[2]
@@ -161,6 +165,7 @@ local function AttackNoCD()
             end)
         end
     end
+    click_attack()
 end
 local function Buso()
     if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then

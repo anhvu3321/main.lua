@@ -454,6 +454,7 @@ for _, v in pairs(game:GetService("Players"):GetChildren()) do
         target = v.Name
     end
 end
+print("Target: " .. target)
 local click_time = 0.1
 local player = game:GetService("Players").LocalPlayer
 repeat wait()

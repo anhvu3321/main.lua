@@ -500,15 +500,9 @@ repeat wait()
             end
         end
         if getgenv().Configs.Weapons["Sword"].Enable then
-            local duration = getgenv().Configs.Weapons["Sword"].Delay
-            local start = tick()
-            while wait(click_time) do
-                if tick() - start <= duration then
-                    tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
-                    AttackNoCD()
-                    SwordSkill(game:GetService("Players"):FindFirstChild(target).Character)
-                end
-            end
+            tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
+            AttackNoCD()
+            SwordSkill(game:GetService("Players"):FindFirstChild(target).Character)
         end
     end)
 until player.Character.Humanoid.Health <= 0 or game:GetService("Players"):FindFirstChild(target).Character.Humanoid.Health <= 0

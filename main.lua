@@ -452,6 +452,7 @@ local target
 for _, v in pairs(game:GetService("Players"):GetChildren()) do
     if v.Name ~= game:GetService("Players").LocalPlayer.Name then
         target = v.Name
+        break
     end
 end
 print("Target: " .. target)

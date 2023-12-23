@@ -64,23 +64,23 @@ getgenv().Configs = {
     }
 }
 
-local request_places = {}
+local Request_Places = {}
 if game.PlaceId == 2753915549 then
-    request_places = {
+    Request_Places = {
         ["Whirl Pool"] = CFrame.new(3864.6884765625, 6.736950397491455, -1926.214111328125),
         ["Sky Area 1"] = CFrame.new(-4607.82275, 872.54248, -1667.55688),
         ["Sky Area 2"] = CFrame.new(-7894.61767578125, 5547.1416015625, -380.29119873046875),
         ["Fish Man"] = CFrame.new(61163.8515625, 11.6796875, 1819.7841796875)
     }
 elseif game.PlaceId == 4442272183 then
-    request_places = {
+    Request_Places = {
         ["Swan's room"] = CFrame.new(2284.912109375, 15.152046203613281, 905.48291015625),
         ["Mansion"] = CFrame.new(-288.46246337890625, 306.130615234375, 597.9988403320312),
         ["Ghost Ship"] = CFrame.new(923.21252441406, 126.9760055542, 32852.83203125),
         ["Ghost Ship Entrance"] = CFrame.new(-6508.5581054688, 89.034996032715, -132.83953857422)
     }
 elseif game.PlaceId == 7449423635 then
-    request_places = {
+    Request_Places = {
         ["Castle on the sea"] = CFrame.new(-5075.50927734375, 314.5155029296875, -3150.0224609375),
         ["Mansion"] = CFrame.new(-12548.998046875, 332.40396118164, -7603.1865234375),
         ["Hydra Island"] = CFrame.new(5753.5478515625, 610.7880859375, -282.33172607421875),
@@ -400,7 +400,7 @@ local function tween(place, item)
         end
         local request_place = CheckNearestRequestIsland(place)
         if request_place ~= nil then
-            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", request_places[request_place].Position)
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Request_Places[request_place].Position)
         end
         local player = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Sit == true then

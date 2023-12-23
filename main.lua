@@ -378,6 +378,20 @@ local function SwordSkill(Pos)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
     end
 end
+local function CheckNearestRequestIsland(place)
+    local min_distance = math.huge
+    local player = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    for request_place, cframe in pairs(Request_Places) do
+        min_distance = math.min(min_distance, math.abs((place.Position - cframe.Position).Magnitude))
+    end
+    min_distance = math.min(min_distance, math.abs((place.Position - player.Position).Magnitude))
+    for request_place, cframe in pairs(Request_Places) do
+        if math.abs((place.Position - cframe.Position).Magnitude) == min_distance then
+            return request_place
+        end
+    end
+    return nil
+end
 local function tween(place, item)
     repeat wait()
         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health <= 0 then
@@ -433,18 +447,6 @@ local function tween(place, item)
         end
     until Distance <= 30
     RemoveVelocity()
-end
-local function StopTween()
-    Stop_Tween = true
-    if Tween ~= nil then
-        repeat wait()
-            if Tween.PlaybackState == Enum.PlaybackState.Playing then
-                Tween:Cancel()
-            end
-        until Tween.PlaybackState ~= Enum.PlaybackState.Playing
-    end
-    RemoveVelocity()
-    Stop_Tween = false
 end
 -- Run main
 callhook()

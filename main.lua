@@ -66,7 +66,7 @@ getgenv().Configs = {
 
 -- Functions
 local plr = game:GetService("Players").LocalPlayer
-local CbFw = getupvalues(require(plr:GetService("Players").PlayerScripts.CombatFramework))
+local CbFw = getupvalues(require(plr.PlayerScripts.CombatFramework))
 local CbFw2 = CbFw[2]
 local Weapon_Type = nil
 local Weapon = nil
@@ -82,7 +82,7 @@ local function GetCurrentBlade()
     return ret
 end
 local function AttackNoCD()
-    local Fast = getupvalues(require(game:GetService("Players").LocalPlayer:GetService("Players").PlayerScripts.CombatFramework))
+    local Fast = getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework))
     local y = Fast[2]
     y.activeController.hitboxMagnitude = 80
     y.activeController.active = false

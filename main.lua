@@ -1437,6 +1437,12 @@ local function AutoFarmBoss(boss)
                     Time = 5
                 })
                 repeat wait(0.03)
+                    OrionLib:MakeNotification({
+                        Name = "Status",
+                        Content = "Killing boss",
+                        Image = "rbxassetid://4483345998",
+                        Time = 1
+                    })
                     if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health <= 0 then
                         repeat wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0
                         AddVelocity()

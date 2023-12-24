@@ -1428,6 +1428,12 @@ local function AutoFarmBoss(boss)
             return
         end
         AddVelocity()
+        OrionLib:MakeNotification({
+            Name = "Status",
+            Content = "Tween Done!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
         for _, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
             OrionLib:MakeNotification({
                 Name = "Status",

@@ -15,7 +15,7 @@ end
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 OrionLib:MakeNotification({
     Name = "Status",
-    Content = "V1.0.1",
+    Content = "V1.0.2",
     Image = "rbxassetid://4483345998",
     Time = 5
 })
@@ -2046,11 +2046,23 @@ spawn(function()
                         })
                         HopServer()
                     elseif not getgenv().Auto_Farm_Boss_Hop then
+                        OrionLib:MakeNotification({
+                            Name = "Status",
+                            Content = "Poping...",
+                            Image = "rbxassetid://4483345998",
+                            Time = 1
+                        })
                         queue:pop("Auto Farm Boss")
                     end
                 end
             end
         elseif not getgenv().Auto_Farm_Boss then
+            OrionLib:MakeNotification({
+                Name = "Status",
+                Content = "Poping...",
+                Image = "rbxassetid://4483345998",
+                Time = 1
+            })
             queue:pop("Auto Farm Boss")
         end
     end
@@ -2069,7 +2081,6 @@ end)
 spawn(function()
     while wait() do
         if not queue:empty() then
-            print(queue:top())
             if queue:top() == "Auto Farm Level" then
                 AutoFarmLevel()
             elseif queue:top() == "Auto Bring Fruit" then

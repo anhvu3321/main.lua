@@ -15,7 +15,7 @@ end
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 OrionLib:MakeNotification({
     Name = "Status",
-    Content = "V1.0.6",
+    Content = "V1.0.7",
     Image = "rbxassetid://4483345998",
     Time = 5
 })
@@ -2046,9 +2046,9 @@ spawn(function()
                         CFrameBoss = game:GetService("Workspace").Enemies:FindFirstChild(boss):FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 30, 0)
                     end)
                 end
-                if CFrameBoss then
+                if CFrameBoss ~= nil then
                     queue:push("Auto Farm Boss", Priority["Auto Farm Boss"])
-                elseif not CFrameBoss then
+                elseif CFrameBoss == nil then
                     if getgenv().Auto_Farm_Boss_Hop then
                         OrionLib:MakeNotification({
                             Name = "Status",

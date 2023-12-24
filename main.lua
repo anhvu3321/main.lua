@@ -15,7 +15,7 @@ end
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 OrionLib:MakeNotification({
     Name = "Status",
-    Content = "V1.0.0",
+    Content = "V1.0.1",
     Image = "rbxassetid://4483345998",
     Time = 5
 })
@@ -1440,12 +1440,7 @@ local function AutoFarmBoss(boss)
             Time = 5
         })
         for _, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-            OrionLib:MakeNotification({
-                Name = "Status",
-                Content = v.Name,
-                Image = "rbxassetid://4483345998",
-                Time = 1
-            })
+            print(v.Name)
             if v.Name == boss and v:FindFirstChild("Humanoid") and v:FindFirstChild("Humanoid").Health > 0 and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0 then
                 OrionLib:MakeNotification({
                     Name = "Status",

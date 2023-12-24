@@ -15,7 +15,7 @@ end
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 OrionLib:MakeNotification({
     Name = "Status",
-    Content = "V1.0.3",
+    Content = "V1.0.4",
     Image = "rbxassetid://4483345998",
     Time = 5
 })
@@ -1401,7 +1401,7 @@ local function SafeAutoFarmLevel()
     end
 end
 local function AutoFarmBoss(boss)
-    if not queue:empty() and queue:top() == "Auto Farm Boss" and getgenv().Weapon ~= nil then
+    if not queue:empty() and queue:top() == "Auto Farm Boss" then
         local CFrameBoss = nil
         if not CFrameBoss then
             pcall(function()
@@ -1471,15 +1471,6 @@ local function AutoFarmBoss(boss)
                 until v:FindFirstChild("Humanoid").Health <= 0
             end
         end
-    elseif not queue:empty() and queue:top() == "Auto Farm Boss" and getgenv().Weapon == nil then
-        OrionLib:MakeNotification({
-            Name = "Error",
-            Content = "Weapon not selected!",
-            Image = "rbxassetid://4483345998",
-            Time = 5
-        })
-        Auto_Farm_Boss_Toggle:Set(false)
-        getgenv().Auto_Farm_Boss = false
     end
 end
 
@@ -2033,7 +2024,17 @@ spawn(function()
             queue:pop("Auto Bring Fruit")
         end
         if getgenv().Auto_Farm_Boss then
-            if getgenv().Boss_To_Farm ~= nil then
+            if not getgenv().Weapon then
+                OrionLib:MakeNotification({
+                    Name = "Error",
+                    Content = "Weapon not selected!",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+                Auto_Farm_Boss_Toggle:Set(false)
+                getgenv().Auto_Farm_Boss = false
+                queue:pop("Auto Farm Boss")
+            elseif getgenv().Boss_To_Farm ~= nil then
                 if game:GetService("ReplicatedStorage"):FindFirstChild(getgenv().Boss_To_Farm) then
                     queue:push("Auto Farm Boss", Priority["Auto Farm Boss"])
                 elseif not game:GetService("ReplicatedStorage"):FindFirstChild(getgenv().Boss_To_Farm) then

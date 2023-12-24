@@ -1429,6 +1429,12 @@ local function AutoFarmBoss(boss)
         end
         AddVelocity()
         for _, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+            OrionLib:MakeNotification({
+                Name = "Status",
+                Content = v.Name,
+                Image = "rbxassetid://4483345998",
+                Time = 1
+            })
             if v.Name == boss and v:FindFirstChild("Humanoid") and v:FindFirstChild("Humanoid").Health > 0 and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0 then
                 OrionLib:MakeNotification({
                     Name = "Status",

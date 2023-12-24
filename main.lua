@@ -13,7 +13,12 @@ if game:GetService("Players").LocalPlayer.Team == nil then
     end
 end
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
-
+OrionLib:MakeNotification({
+    Name = "Status",
+    Content = "New Script!",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
 -- Variables
 local CFrame_Mobs = {
     ["Bandit"] = CFrame.new(1045.962646484375, 27.00250816345215, 1560.8203125),

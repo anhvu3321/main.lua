@@ -15,7 +15,7 @@ end
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 OrionLib:MakeNotification({
     Name = "Status",
-    Content = "New Script!",
+    Content = "V1.0.0",
     Image = "rbxassetid://4483345998",
     Time = 5
 })
@@ -2074,6 +2074,7 @@ end)
 spawn(function()
     while wait() do
         if not queue:empty() then
+            print(queue:top())
             if queue:top() == "Auto Farm Level" then
                 AutoFarmLevel()
             elseif queue:top() == "Auto Bring Fruit" then

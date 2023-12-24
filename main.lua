@@ -15,7 +15,7 @@ end
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 OrionLib:MakeNotification({
     Name = "Status",
-    Content = "V1.1.1",
+    Content = "V1.1.2",
     Image = "rbxassetid://4483345998",
     Time = 5
 })
@@ -1694,7 +1694,7 @@ AutoFarm:AddButton({
                 end
             end
         end
-        for boss in Bosses do
+        for _, boss in pairs(Bosses) do
             print(boss)
             local CFrameBoss = nil
             if not CFrameBoss then

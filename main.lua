@@ -30,7 +30,7 @@ getgenv().Setting = {
     ["Weapons"] = { --[[ Select Weapon, Self Explain]]
         ["Melee"] = {
             ["Enable"] = true, --[[ enable using melee]]
-            ["Delay"] = 0,   --[[ time delay between the melee skill]] 
+            ["Delay"] = 2,   --[[ time delay between the melee skill]] 
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true, --[[ enable using skill Z]]
@@ -48,7 +48,7 @@ getgenv().Setting = {
             },
         },
         ["Blox Fruit"] = {
-            ["Enable"] = true, --[[ enable using blox fruit]]
+            ["Enable"] = false, --[[ enable using blox fruit]]
             ["Delay"] = 0,  --[[ time delay between the blox fruit skill ]]
             ["Skills"] = {
                 ["Z"] = {
@@ -75,8 +75,8 @@ getgenv().Setting = {
             },
         },
         ["Sword"] = {
-            ["Enable"] = false, --[[ enable using sword]]
-            ["Delay"] = 0, --[[ time delay between the sword skill ]]
+            ["Enable"] = true, --[[ enable using sword]]
+            ["Delay"] = 2, --[[ time delay between the sword skill ]]
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true, --[[ enable using skill Z]]

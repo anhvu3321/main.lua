@@ -1,7 +1,7 @@
 getgenv().Setting = {
     ["Team"] = "Pirates", --[[Marines]]
     ["Webhook"] = {
-        ["Url"] = "https://discord.com/api/webhooks/1160607946313568417/66MIAVj7-POIFvHLDPu4zpisGyJUl8fcR0jTJl2T0yteZASXG8V9OcFvmPfRZj7Uk6_Y", --[[ link webhook]]
+        ["Url"] = "", --[[ link webhook]]
         ["Enabled"] = true, --[[ enable webhook]]
     },
     ["BypassTP"] = {
@@ -30,25 +30,25 @@ getgenv().Setting = {
     ["Weapons"] = { --[[ Select Weapon, Self Explain]]
         ["Melee"] = {
             ["Enable"] = true, --[[ enable using melee]]
-            ["Delay"] = 1,   --[[ time delay between the melee skill]] 
+            ["Delay"] = 0,   --[[ time delay between the melee skill]] 
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true, --[[ enable using skill Z]]
-                    ["HoldTime"] = 0,  --[[ hold skill in (seconds)]]
+                    ["HoldTime"] = 1,  --[[ hold skill in (seconds)]]
                 },
                 ["X"] = {
                     ["Enable"] = true, --[[ enable using skill X ]]
-                    ["HoldTime"] = 0,  --[[ hold skill in (seconds)]]
+                    ["HoldTime"] = 1,  --[[ hold skill in (seconds)]]
                 },
 
                 ["C"] = {
                     ["Enable"] = true, --[[ enable using skill C]]
-                    ["HoldTime"] = 0,  --[[ hold skill in (seconds)]]
+                    ["HoldTime"] = 1,  --[[ hold skill in (seconds)]]
                 },
             },
         },
         ["Blox Fruit"] = {
-            ["Enable"] = false, --[[ enable using blox fruit]]
+            ["Enable"] = true, --[[ enable using blox fruit]]
             ["Delay"] = 0,  --[[ time delay between the blox fruit skill ]]
             ["Skills"] = {
                 ["Z"] = {
@@ -75,12 +75,12 @@ getgenv().Setting = {
             },
         },
         ["Sword"] = {
-            ["Enable"] = true, --[[ enable using sword]]
-            ["Delay"] = 1, --[[ time delay between the sword skill ]]
+            ["Enable"] = false, --[[ enable using sword]]
+            ["Delay"] = 0, --[[ time delay between the sword skill ]]
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true, --[[ enable using skill Z]]
-                    ["HoldTime"] = 0, --[[ hold skill in (seconds)]]
+                    ["HoldTime"] = 1, --[[ hold skill in (seconds)]]
                 },
                 ["X"] = {
                     ["Enable"] = true, --[[[[enable using skill X]]
@@ -90,4 +90,4 @@ getgenv().Setting = {
         },
     }
 }
-loadstring(game:HttpGet(("https://raw.githubusercontent.com/lqbao1103/test/9bf205e194afa308d4466fa987b2c30a40619ede/baoti.lua")))()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/Xero2409/XeroHub/main/bounty.lua")))()

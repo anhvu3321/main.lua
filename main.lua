@@ -4,6 +4,10 @@ local function tween(place, item, boss, state, fruit)
             repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0
             
         end
+        local request_place = CheckNearestRequestIsland(place)
+        if request_place ~= nil then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Request_Places[request_place].Position)
+        end
         local player = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Sit == true then
             game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Sit = false
@@ -99,4 +103,4 @@ local function tween(place, item, boss, state, fruit)
     until Distance <= 10
     RemoveVelocity()
 end
-tween(-1126.82251, 16.9443321, -14430.4238)
+tween(CFrame.new(-1126.82251, 16.9443321, -14430.4238))

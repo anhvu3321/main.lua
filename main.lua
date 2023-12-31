@@ -48,15 +48,15 @@ getgenv().Setting = {
             },
         },
         ["Blox Fruit"] = {
-            ["Enable"] = false, --[[ enable using blox fruit]]
-            ["Delay"] = 0,  --[[ time delay between the blox fruit skill ]]
+            ["Enable"] = true, --[[ enable using blox fruit]]
+            ["Delay"] = 1,  --[[ time delay between the blox fruit skill ]]
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true, --[[ enable using skill Z]]
                     ["HoldTime"] = 0, --[[ hold skill in (seconds)]]
                 },
                 ["X"] = {
-                    ["Enable"] = false, --[[ enable using skill X]]
+                    ["Enable"] = true, --[[ enable using skill X]]
                     ["HoldTime"] = 0, --[[ hold skill in (seconds)]]
                 },
 
@@ -69,7 +69,7 @@ getgenv().Setting = {
                     ["HoldTime"] = 3, --[[ hold skill in (seconds)]]
                 },
                 ["F"] = {
-                    ["Enable"] = false, --[[ enable using skill F]]
+                    ["Enable"] = true, --[[ enable using skill F]]
                     ["HoldTime"] = 0, --[[ hold skill in (seconds)]]
                 },
             },

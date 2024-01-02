@@ -64,6 +64,4 @@ local a = request({
     },
     Body = HttpService:JSONEncode(data)
 })
-for i, v in pairs(a) do
-    print(i, v)
-end
+print(a["Body"])

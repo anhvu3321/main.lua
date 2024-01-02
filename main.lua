@@ -64,4 +64,5 @@ local a = request({
     },
     Body = HttpService:JSONEncode(data)
 })
+print("send done")
 print(a["Body"])

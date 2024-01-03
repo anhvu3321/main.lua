@@ -2643,7 +2643,7 @@ local Main = Window:MakeTab({
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
-Main:AddLabel("V2.4.4")
+Main:AddLabel("V2.4.5")
 Main:AddTextbox({
     Name = "Input Join Code here",
     Default = "",

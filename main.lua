@@ -2491,12 +2491,11 @@ end
 local function HakiColorNotify()
     while task.wait(1) do
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1") ~= nil and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1") ~= "1" then
-            print("Haki Color Found")
             local request = request or fluxus and fluxus_request or http.request
 
             local code = 'Verudous'
             local type = 'haki'
-            local time = tostring(os.time())
+            local time = tostring(os.time() - 1)
             
             local list = {code, type, time}
             
@@ -2529,7 +2528,7 @@ local function HakiColorNotify()
                 payload = encode(HttpService:JSONEncode(payload))
             }
 
-            local response = request({
+            request({
                 Url = 'https://apixerohub.000webhostapp.com/',
                 Method = "POST",
                 Headers = {
@@ -2537,10 +2536,6 @@ local function HakiColorNotify()
                 },
                 Body = HttpService:JSONEncode(data)
             })
-            for i, v in pairs(response) do
-                print(i, v)
-            end
-            repeat task.wait(1) until game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1") == nil
         end
     end
 end
@@ -2648,7 +2643,7 @@ local Main = Window:MakeTab({
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
-Main:AddLabel("V2.4.1")
+Main:AddLabel("V2.4.2")
 Main:AddTextbox({
     Name = "Input Join Code here",
     Default = "",

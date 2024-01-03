@@ -2495,7 +2495,7 @@ local function HakiColorNotify()
 
             local code = 'Verudous'
             local type = 'haki'
-            local time = tostring(os.date("!%Y-%m-%dT%H:%M:%SZ", os.time()))
+            local time = tostring(os.time())
             
             local list = {code, type, time}
             

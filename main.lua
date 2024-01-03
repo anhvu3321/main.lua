@@ -2495,7 +2495,7 @@ local function HakiColorNotify()
 
             local code = 'Verudous'
             local type = 'haki'
-            local time = tostring(os.time() - 1)
+            local time = tostring(os.date("!%Y-%m-%dT%H:%M:%SZ", os.time()))
             
             local list = {code, type, time}
             
@@ -2643,7 +2643,7 @@ local Main = Window:MakeTab({
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
-Main:AddLabel("V2.4.2")
+Main:AddLabel("V2.4.4")
 Main:AddTextbox({
     Name = "Input Join Code here",
     Default = "",

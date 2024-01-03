@@ -17,27 +17,22 @@
 --         return b64chars:sub(c + 1, c + 1)
 --     end) .. ({ '', '==', '=' })[#data % 3 + 1])
 -- end
-print(2)
+print(3)
 local function base64Encode(data)
     local b64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
     local result = ""
 
     for i = 1, #data, 3 do
         local chunk = data:sub(i, i + 2)
-        local byte1, byte2, byte3 = chunk:byte(1, 3)
+        local bytes = {chunk:byte(1, 3)}
 
-        byte1 = byte1 or 0
-        byte2 = byte2 or 0
-        byte3 = byte3 or 0
+        local bits = ""
+        for _, byte in ipairs(bytes) do
+            bits = bits .. string.format('%08d', tonumber(string.reverse(string.format('%08d', byte)), 2))
+        end
 
-        local bits = string.format('%08d%08d%08d', 
-            tonumber(string.format('%08d', byte1):reverse(), 2),
-            tonumber(string.format('%08d', byte2):reverse(), 2),
-            tonumber(string.format('%08d', byte3):reverse(), 2)
-        )
-
-        for j = 1, 4 do
-            local index = tonumber(bits:sub((j - 1) * 6 + 1, j * 6), 2) + 1
+        for j = 1, #bits, 6 do
+            local index = tonumber(bits:sub(j, j + 5), 2) + 1
             result = result .. (index <= 64 and b64chars:sub(index, index) or '=')
         end
     end

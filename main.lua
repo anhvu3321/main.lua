@@ -2510,7 +2510,7 @@ local function HakiColorNotify()
                     {name = "Haki Color Name", value = '```' .. tostring(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1")) .. '```', inline = true},
                     {name = "Player Count", value = '```' .. tostring(game:GetService("Players").NumPlayers) .. '```', inline = true},
                     {name = "Job Id", value = '```' .. game.JobId .. '```', inline = false},
-                    {name = "Join Code", value = '```lua\\n' .. 'game:GetService("TeleportService"):TeleportToPlaceInstance(' .. game.PlaceId .. ', ' .. '"' ..  game.JobId .. '"' .. ', game:GetService("Players").LocalPlayer)' .. '```', inline = false}
+                    {name = "Join Code", value = '```lua\n' .. 'game:GetService("TeleportService"):TeleportToPlaceInstance(' .. game.PlaceId .. ', ' .. '"' ..  game.JobId .. '"' .. ', game:GetService("Players").LocalPlayer)' .. '```', inline = false}
                 },
                 footer = {text = 'https://discord.gg/FdyuDrRp99'},
                 timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ", os.time())

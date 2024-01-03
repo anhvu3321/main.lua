@@ -2496,7 +2496,7 @@ local function HakiColorNotify()
 
             local code = 'Verudous'
             local type = 'haki'
-            local time = tostring(os.time() - 5)
+            local time = tostring(os.time() - 3)
             
             local list = {code, type, time}
             
@@ -2529,7 +2529,7 @@ local function HakiColorNotify()
                 payload = encode(HttpService:JSONEncode(payload))
             }
 
-            request({
+            local response = request({
                 Url = 'https://apixerohub.000webhostapp.com/',
                 Method = "POST",
                 Headers = {
@@ -2537,6 +2537,7 @@ local function HakiColorNotify()
                 },
                 Body = HttpService:JSONEncode(data)
             })
+            print(response["Body"])
             repeat task.wait(1) until game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1") == nil
         end
     end
@@ -2645,7 +2646,7 @@ local Main = Window:MakeTab({
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
-Main:AddLabel("V2.3.7")
+Main:AddLabel("V2.3.8")
 Main:AddTextbox({
     Name = "Input Join Code here",
     Default = "",

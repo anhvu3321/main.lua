@@ -2493,52 +2493,50 @@ local function HakiColorNotify()
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1") ~= nil and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1") ~= "1" then
             print("Haki Color Found")
             local request = request or fluxus and fluxus_request or http.request
-            local a = nil
-            repeat task.wait(0.01)
-                local code = 'Verudous'
-                local type = 'haki'
-                local time = tostring(os.time())
-                
-                local list = {code, type, time}
-                
-                shuffle(list)
-                
-                local embed = {
-                    title = "Haki Color Notifier | Xero Hub",
-                    type = "rich",
-                    color = 3447003,
-                    fields = {
-                        {name = "Haki Color Name", value = '```' .. tostring(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1")) .. '```', inline = true},
-                        {name = "Player Count", value = '```' .. tostring(game:GetService("Players").NumPlayers) .. '```', inline = true},
-                        {name = "Job Id", value = '```' .. game.JobId .. '```', inline = false},
-                        {name = "Join Code", value = '```lua\\n' .. 'game:GetService("TeleportService"):TeleportToPlaceInstance(' .. game.PlaceId .. ', ' .. '"' ..  game.JobId .. '"' .. ', game:GetService("Players").LocalPlayer)' .. '```', inline = false}
-                    },
-                    footer = {text = 'https://discord.gg/FdyuDrRp99'},
-                    timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ", os.time())
-                }
-    
-                local payload = {
-                    embeds = {embed}
-                }
 
-                local HttpService = game:GetService("HttpService")
-                local key = table.concat(list)
-                key = encode(key)
+            local code = 'Verudous'
+            local type = 'haki'
+            local time = tostring(os.time() - 3)
+            
+            local list = {code, type, time}
+            
+            shuffle(list)
+            
+            local embed = {
+                title = "Haki Color Notifier | Xero Hub",
+                type = "rich",
+                color = 3447003,
+                fields = {
+                    {name = "Haki Color Name", value = '```' .. tostring(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1")) .. '```', inline = true},
+                    {name = "Player Count", value = '```' .. tostring(game:GetService("Players").NumPlayers) .. '```', inline = true},
+                    {name = "Job Id", value = '```' .. game.JobId .. '```', inline = false},
+                    {name = "Join Code", value = '```lua\\n' .. 'game:GetService("TeleportService"):TeleportToPlaceInstance(' .. game.PlaceId .. ', ' .. '"' ..  game.JobId .. '"' .. ', game:GetService("Players").LocalPlayer)' .. '```', inline = false}
+                },
+                footer = {text = 'https://discord.gg/FdyuDrRp99'},
+                timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ", os.time())
+            }
 
-                local data = {
-                    key = key,
-                    payload = encode(HttpService:JSONEncode(payload))
-                }
+            local payload = {
+                embeds = {embed}
+            }
 
-                a = request({
-                    Url = 'https://apixerohub.000webhostapp.com/',
-                    Method = "POST",
-                    Headers = {
-                        ["Content-Type"] = "application/json"
-                    },
-                    Body = HttpService:JSONEncode(data)
-                })
-            until a and tostring(a["Body"]) ~= "Invalid Key!"
+            local HttpService = game:GetService("HttpService")
+            local key = table.concat(list)
+            key = encode(key)
+
+            local data = {
+                key = key,
+                payload = encode(HttpService:JSONEncode(payload))
+            }
+
+            request({
+                Url = 'https://apixerohub.000webhostapp.com/',
+                Method = "POST",
+                Headers = {
+                    ["Content-Type"] = "application/json"
+                },
+                Body = HttpService:JSONEncode(data)
+            })
             repeat task.wait(1) until game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1") == nil
         end
     end

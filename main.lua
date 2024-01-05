@@ -210,7 +210,7 @@ end
 local target = target_list[math.random(1, #target_list)]
 print("Target: " .. target)
 local player = game:GetService("Players").LocalPlayer
-repeat task.wait(0.0001)
+repeat task.wait(0.01)
     pcall(function()
         Buso()
         tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)

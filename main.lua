@@ -291,30 +291,20 @@ getgenv().Weapon = "Godhuman"
 local function SpamSkill(target)
     EquipWeapon(getgenv().Weapon)
     local skill = game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills[getgenv().Weapon]
-    if getgenv().Skill_Z_Mastery and skill.Z.Cooldown.Size.X.Scale == 0 then
+    if skill.Z.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(target, "Z")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
     end
-    if getgenv().Skill_X_Mastery and skill.X.Cooldown.Size.X.Scale == 0 then
+    if skill.X.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(target, "X")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
     end
-    if getgenv().Skill_C_Mastery and skill.C.Cooldown.Size.X.Scale == 0 then
+    if skill.C.Cooldown.Size.X.Scale == 0 then
         changeposmobtouseskill(target, "C")
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"C",false,game)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
-    end
-    if getgenv().Skill_V_Mastery and skill.V.Cooldown.Size.X.Scale == 0 then
-        changeposmobtouseskill(target, "V")
-        game:GetService("VirtualInputManager"):SendKeyEvent(true,"V",false,game)
-        game:GetService("VirtualInputManager"):SendKeyEvent(false,"V",false,game)
-    end
-    if getgenv().Skill_F_Mastery and skill.F.Cooldown.Size.X.Scale == 0 then
-        changeposmobtouseskill(target, "F")
-        game:GetService("VirtualInputManager"):SendKeyEvent(true,"F",false,game)
-        game:GetService("VirtualInputManager"):SendKeyEvent(false,"F",false,game)
     end
     AttackNoCD()
 end

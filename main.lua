@@ -160,15 +160,15 @@ local function tween(place, item)
         AddVelocity()
         NoClip()
         local Distance = (place.Position - player.Position).Magnitude
-        local speed = 300
+        local speed = 350
         if Distance < 250 then
             speed = 5000
         elseif Distance < 500 then
-            speed = 450
+            speed = 1000
         elseif Distance < 1000 then
-            speed = 350
+            speed = 500
         elseif Distance >= 1000 then
-            speed = 300
+            speed = 350
         end
         local TweenService = game:GetService("TweenService")
         local start = player.Position

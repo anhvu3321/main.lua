@@ -289,7 +289,6 @@ end
 
 getgenv().Weapon = "Godhuman"
 local function SpamSkill(target)
-    UpdateWeapon()
     EquipWeapon(getgenv().Weapon)
     local skill = game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills[getgenv().Weapon]
     if getgenv().Skill_Z_Mastery and skill.Z.Cooldown.Size.X.Scale == 0 then
@@ -331,7 +330,6 @@ for _, v in pairs(game:GetService("Players"):GetChildren()) do
 end
 local target = target_list[math.random(1, #target_list)]
 print("Target: " .. target)
-local click_time = 0.1
 local player = game:GetService("Players").LocalPlayer
 repeat wait()
     pcall(function()

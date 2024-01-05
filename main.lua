@@ -26,6 +26,12 @@ end
 local plr = game:GetService("Players").LocalPlayer
 local CbFw = getupvalues(require(plr.PlayerScripts.CombatFramework))
 local CbFw2 = CbFw[2]
+local Weapon_Type = nil
+local Weapon = nil
+local firesv
+local funfire
+local remotetosend = {}
+local functosend = {}
 local function GetCurrentBlade()
     local p13 = CbFw2.activeController
     local ret = p13.blades[1]
@@ -129,6 +135,87 @@ local function RemoveVelocity()
         end
     end)
 end
+local function UpdateWeapon()
+    if Weapon_Type ~= nil then
+        for i, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+            if v:IsA("Tool") then
+                if string.find(v.ToolTip, Weapon_Type) then
+                    Weapon = v.Name
+                    return
+                end
+            end
+        end
+    end
+end
+local function EquipWeapon(weapon)
+	if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(weapon) then
+		local tool = game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(weapon)
+		game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(tool)
+	end
+end
+local function changeposmobtouseskill(PosToUseSkillFruit, skill)
+    firesv = game:GetService("Players").LocalPlayer.Character[game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent
+    funfire = game:GetService("Players").LocalPlayer.Character.Humanoid:FindFirstChild("")
+    if(skill == "Z") then
+        functosend = {
+            [1] = "Z",
+            [2] = PosToUseSkillFruit:FindFirstChild("HumanoidRootPart").Position
+        }
+    elseif (skill == 'X') then
+        functosend = {
+            [1] = "X",
+            [2] = PosToUseSkillFruit:FindFirstChild("HumanoidRootPart").Position
+        }
+    elseif (skill == 'C') then
+        functosend = {
+            [1] = "C",
+            [2] = PosToUseSkillFruit:FindFirstChild("HumanoidRootPart").Position
+        }
+    elseif(skill == 'V') then
+        functosend = {
+            [1] = "V",
+            [2] = PosToUseSkillFruit:FindFirstChild("HumanoidRootPart").Position
+        }
+    else 
+        functosend = {
+            [1] = "F",
+            [2] = PosToUseSkillFruit:FindFirstChild("HumanoidRootPart").Position
+        }
+    end
+    remotetosend ={
+        [1] = PosToUseSkillFruit:FindFirstChild("HumanoidRootPart").Position
+    }
+end
+local function callhook()
+    local OldNamecall
+    OldNamecall = hookmetamethod(game, "__namecall", function(Self, ...)
+        local method = getnamecallmethod()
+        if method == "InvokeServer" and Self == funfire and functosend ~= nil then
+                local str = (...)
+                if(string.find(str,functosend[1])) then
+                    return OldNamecall(Self,unpack(functosend)) 
+                elseif(string.find(str,"Vector3.new")) then
+                    return OldNamecall(Self,unpack(functosend))
+                end
+        end
+        return OldNamecall(Self, ...)
+    end)
+    local Newfunc
+    Newfunc = hookmetamethod(game, "__namecall", function(Self, ...)
+        local method = getnamecallmethod()
+        if method == "FireServer" and Self == firesv and remotetosend ~= nil then
+                local str = {...}
+                if(str[1] == true) then
+                    return Newfunc(Self,...)
+                elseif (str[1] == false) then
+                    return Newfunc(Self,...)
+                else
+                    return Newfunc(Self,unpack(remotetosend))
+                end
+        end
+        return Newfunc(Self, ...)
+    end)
+end
 local function CheckNearestRequestIsland(place)
     local min_distance = math.huge
     local player = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
@@ -144,9 +231,9 @@ local function CheckNearestRequestIsland(place)
     return nil
 end
 local function tween(place, item)
-    repeat task.wait()
+    repeat wait()
         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health <= 0 then
-            repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0
+            repeat wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0
             AddVelocity()
         end
         local request_place = CheckNearestRequestIsland(place)
@@ -160,15 +247,15 @@ local function tween(place, item)
         AddVelocity()
         NoClip()
         local Distance = (place.Position - player.Position).Magnitude
-        local speed = 350
+        local speed = 300
         if Distance < 250 then
             speed = 5000
         elseif Distance < 500 then
-            speed = 1000
+            speed = 450
         elseif Distance < 1000 then
-            speed = 500
-        elseif Distance >= 1000 then
             speed = 350
+        elseif Distance >= 1000 then
+            speed = 300
         end
         local TweenService = game:GetService("TweenService")
         local start = player.Position
@@ -182,7 +269,7 @@ local function tween(place, item)
         Tween = TweenService:Create(player, info, {CFrame = place})
         Tween:Play()
         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health <= 0 then
-            repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0
+            repeat wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0
             AddVelocity()
         end
         if Stop_Tween then
@@ -199,7 +286,42 @@ local function tween(place, item)
     until Distance <= 30
     RemoveVelocity()
 end
+
+getgenv().Weapon = "Godhuman"
+local function SpamSkill(target)
+    UpdateWeapon()
+    EquipWeapon(getgenv().Weapon)
+    local skill = game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills[getgenv().Weapon]
+    if getgenv().Skill_Z_Mastery and skill.Z.Cooldown.Size.X.Scale == 0 then
+        changeposmobtouseskill(target, "Z")
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
+    end
+    if getgenv().Skill_X_Mastery and skill.X.Cooldown.Size.X.Scale == 0 then
+        changeposmobtouseskill(target, "X")
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
+    end
+    if getgenv().Skill_C_Mastery and skill.C.Cooldown.Size.X.Scale == 0 then
+        changeposmobtouseskill(target, "C")
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,"C",false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
+    end
+    if getgenv().Skill_V_Mastery and skill.V.Cooldown.Size.X.Scale == 0 then
+        changeposmobtouseskill(target, "V")
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,"V",false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,"V",false,game)
+    end
+    if getgenv().Skill_F_Mastery and skill.F.Cooldown.Size.X.Scale == 0 then
+        changeposmobtouseskill(target, "F")
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,"F",false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,"F",false,game)
+    end
+    AttackNoCD()
+end
 -- Run main
+callhook()
+
 local target_list = {}
 for _, v in pairs(game:GetService("Players"):GetChildren()) do
     if v.Name ~= game:GetService("Players").LocalPlayer.Name then
@@ -209,12 +331,13 @@ for _, v in pairs(game:GetService("Players"):GetChildren()) do
 end
 local target = target_list[math.random(1, #target_list)]
 print("Target: " .. target)
+local click_time = 0.1
 local player = game:GetService("Players").LocalPlayer
-repeat task.wait(0.01)
+repeat wait()
     pcall(function()
         Buso()
         tween(game:GetService("Players"):FindFirstChild(target).Character.HumanoidRootPart.CFrame)
         AddVelocity()
-        AttackNoCD()
+        SpamSkill(game:GetService("Players"):FindFirstChild(target).Character)
     end)
 until player.Character.Humanoid.Health <= 0 or game:GetService("Players"):FindFirstChild(target).Character.Humanoid.Health <= 0

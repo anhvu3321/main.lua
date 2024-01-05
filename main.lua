@@ -1,69 +1,3 @@
--- Config
-getgenv().Configs = {
-    ["Team"] = "Marines", -- Pirates/Marines
-    ["Weapons"] = { -- Put your config here
-        ["Melee"] = {
-            ["Enable"] = false,
-            ["Delay"] = 2,
-            ["Skills"] = {
-                ["Z"] = {
-                    ["Enable"] = true,
-                    ["HoldTime"] = 0,
-                },
-                ["X"] = {
-                    ["Enable"] = true,
-                    ["HoldTime"] = 0,
-                },
-                ["C"] = {
-                    ["Enable"] = true,
-                    ["HoldTime"] = 0,
-                },
-            },
-        },
-        ["Blox Fruit"] = {
-            ["Enable"] = false,
-            ["Delay"] = 1,
-            ["Skills"] = {
-                ["Z"] = {
-                    ["Enable"] = true,
-                    ["HoldTime"] = 0,
-                },
-                ["X"] = {
-                    ["Enable"] = false,
-                    ["HoldTime"] = 0,
-                },
-
-                ["C"] = {
-                    ["Enable"] = false,
-                    ["HoldTime"] = 0,
-                },
-                ["V"] = {
-                    ["Enable"] = false,
-                    ["HoldTime"] = 0,
-                },
-                ["F"] = {
-                    ["Enable"] = false,
-                    ["HoldTime"] = 0,
-                },
-            },
-        },
-        ["Sword"] = {
-            ["Enable"] = true,
-            ["Delay"] = 2,
-            ["Skills"] = {
-                ["Z"] = {
-                    ["Enable"] = true,
-                    ["HoldTime"] = 0.1,
-                },
-                ["X"] = {
-                    ["Enable"] = true,
-                    ["HoldTime"] = 0.1,
-                },
-            },
-        }
-    }
-}
-
 local Request_Places = {}
 if game.PlaceId == 2753915549 then
     Request_Places = {
@@ -92,12 +26,6 @@ end
 local plr = game:GetService("Players").LocalPlayer
 local CbFw = getupvalues(require(plr.PlayerScripts.CombatFramework))
 local CbFw2 = CbFw[2]
-local Weapon_Type = nil
-local Weapon = nil
-local firesv
-local funfire
-local remotetosend = {}
-local functosend = {}
 local function GetCurrentBlade()
     local p13 = CbFw2.activeController
     local ret = p13.blades[1]
@@ -200,24 +128,6 @@ local function RemoveVelocity()
             end
         end
     end)
-end
-local function UpdateWeapon()
-    if Weapon_Type ~= nil then
-        for i, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-            if v:IsA("Tool") then
-                if string.find(v.ToolTip, Weapon_Type) then
-                    Weapon = v.Name
-                    return
-                end
-            end
-        end
-    end
-end
-local function EquipWeapon(weapon)
-	if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(weapon) then
-		local tool = game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(weapon)
-		game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(tool)
-	end
 end
 local function CheckNearestRequestIsland(place)
     local min_distance = math.huge

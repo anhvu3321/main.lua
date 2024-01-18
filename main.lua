@@ -1,3 +1,4 @@
+print('executed')
 function GetLocalBoat()
     for i, v in next, game:GetService("Workspace").Boats:GetChildren() do
         if v:IsA("Model") then

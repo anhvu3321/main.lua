@@ -60,7 +60,7 @@ local function HakiColorNotify()
             local key = table.concat(list)
                 
             local embed = {
-                title = "Haki Color Notifier | Xero Hub",
+                title = "Haki Color Notifier | Xero Hub | Testing",
                 type = "rich",
                 color = 3447003,
                 fields = {

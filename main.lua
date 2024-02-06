@@ -1,3 +1,4 @@
+print(123)
 -- Load
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
@@ -74,6 +75,14 @@ local function StopTween()
     end
     RemoveVelocity()
     Stop_Tween = false
+end
+local function NoClip()
+    local character = game:GetService("Players").LocalPlayer.Character
+    for _, v in pairs(character:GetChildren()) do
+        if v:IsA("BasePart") then
+            v.CanCollide = false
+        end
+    end
 end
 local function tween(place, item, boss, state, fruit)
     repeat task.wait()

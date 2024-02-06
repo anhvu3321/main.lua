@@ -1,3 +1,4 @@
+print('Dit me game')
 -- Load
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
@@ -92,8 +93,7 @@ local function tween(place)
         end
         AddVelocity()
         NoClip()
-        place = CFrame.new(-12575, 366, -7471)
-        local Distance = (place.Position - player.Position).Magnitude
+        local Distance = (CFrame.new(-12575, 366, -7471).Position - player.Position).Magnitude
         if Distance <= 100 then
             game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = place
         else

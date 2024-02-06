@@ -1,4 +1,4 @@
-print('Dit me game')
+print('Dit me game lon')
 -- Load
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()

@@ -76,14 +76,13 @@ local function StopTween()
     RemoveVelocity()
     Stop_Tween = false
 end
-local function tween(place)
+local function tween()
     repeat task.wait()
         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health <= 0 then
             repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0
             AddVelocity()
         end
-        place = CFrame.new(-12575, 366, -7471)
-        local request_place = CheckNearestRequestIsland(place)
+        local request_place = CheckNearestRequestIsland(CFrame.new(-12575, 366, -7471))
         if request_place ~= nil then
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Request_Places[request_place].Position)
         end
@@ -95,19 +94,19 @@ local function tween(place)
         NoClip()
         local Distance = (CFrame.new(-12575, 366, -7471).Position - player.Position).Magnitude
         if Distance <= 100 then
-            game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = place
+            game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(-12575, 366, -7471)
         else
             local speed = 350
             local TweenService = game:GetService("TweenService")
             local start = player.Position
-            local _end = place.Position
+            local _end = CFrame.new(-12575, 366, -7471).Position
             local distance = (start - _end).Magnitude
             local _time = distance/(speed)
             local info = TweenInfo.new(
                 _time,
                 Enum.EasingStyle.Linear
             )
-            Tween = TweenService:Create(player, info, {CFrame = place})
+            Tween = TweenService:Create(player, info, {CFrame = CFrame.new(-12575, 366, -7471)})
             Tween:Play()
             if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health <= 0 then
                 repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0

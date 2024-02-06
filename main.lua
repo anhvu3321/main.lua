@@ -1,3 +1,4 @@
+print(123)
 -- Load
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
@@ -16,6 +17,31 @@ end
 local Request_Places = {}
 local Stop_Tween = false
 local Tween = nil
+-- Check Sea
+if game.PlaceId == 2753915549 then
+    Request_Places = {
+        ["Whirl Pool"] = CFrame.new(3864.6884765625, 6.736950397491455, -1926.214111328125),
+        ["Sky Area 1"] = CFrame.new(-4607.82275, 872.54248, -1667.55688),
+        ["Sky Area 2"] = CFrame.new(-7894.61767578125, 5547.1416015625, -380.29119873046875),
+        ["Fish Man"] = CFrame.new(61163.8515625, 11.6796875, 1819.7841796875)
+    }
+elseif game.PlaceId == 4442272183 then
+    Request_Places = {
+        ["Swan's room"] = CFrame.new(2284.912109375, 15.152046203613281, 905.48291015625),
+        ["Mansion"] = CFrame.new(-288.46246337890625, 306.130615234375, 597.9988403320312),
+        ["Ghost Ship"] = CFrame.new(923.21252441406, 126.9760055542, 32852.83203125),
+        ["Ghost Ship Entrance"] = CFrame.new(-6508.5581054688, 89.034996032715, -132.83953857422)
+    }
+elseif game.PlaceId == 7449423635 then
+    Request_Places = {
+        ["Castle on the sea"] = CFrame.new(-5075.50927734375, 314.5155029296875, -3150.0224609375),
+        ["Mansion"] = CFrame.new(-12548.998046875, 332.40396118164, -7603.1865234375),
+        ["Hydra Island"] = CFrame.new(5753.5478515625, 610.7880859375, -282.33172607421875),
+        ["Temple Of Time"] = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875),
+        ["Beautiful Pirate Entrance"] = CFrame.new(-11993.580078125, 334.7812805175781, -8844.1826171875),
+        ["Beautiful Pirate Place"] = CFrame.new(5314.58203125, 25.419387817382812, -125.94227600097656)
+    }
+end
 -- Functions
 local function BuyRandomFruit()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
@@ -154,30 +180,6 @@ local function StoreFruit()
     end
 end
 -- Execute
-if game.PlaceId == 2753915549 then
-    Request_Places = {
-        ["Whirl Pool"] = CFrame.new(3864.6884765625, 6.736950397491455, -1926.214111328125),
-        ["Sky Area 1"] = CFrame.new(-4607.82275, 872.54248, -1667.55688),
-        ["Sky Area 2"] = CFrame.new(-7894.61767578125, 5547.1416015625, -380.29119873046875),
-        ["Fish Man"] = CFrame.new(61163.8515625, 11.6796875, 1819.7841796875)
-    }
-elseif game.PlaceId == 4442272183 then
-    Request_Places = {
-        ["Swan's room"] = CFrame.new(2284.912109375, 15.152046203613281, 905.48291015625),
-        ["Mansion"] = CFrame.new(-288.46246337890625, 306.130615234375, 597.9988403320312),
-        ["Ghost Ship"] = CFrame.new(923.21252441406, 126.9760055542, 32852.83203125),
-        ["Ghost Ship Entrance"] = CFrame.new(-6508.5581054688, 89.034996032715, -132.83953857422)
-    }
-elseif game.PlaceId == 7449423635 then
-    Request_Places = {
-        ["Castle on the sea"] = CFrame.new(-5075.50927734375, 314.5155029296875, -3150.0224609375),
-        ["Mansion"] = CFrame.new(-12548.998046875, 332.40396118164, -7603.1865234375),
-        ["Hydra Island"] = CFrame.new(5753.5478515625, 610.7880859375, -282.33172607421875),
-        ["Temple Of Time"] = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875),
-        ["Beautiful Pirate Entrance"] = CFrame.new(-11993.580078125, 334.7812805175781, -8844.1826171875),
-        ["Beautiful Pirate Place"] = CFrame.new(5314.58203125, 25.419387817382812, -125.94227600097656)
-    }
-end
 while task.wait() do
     BuyRandomFruit()
     StoreFruit()

@@ -1,4 +1,3 @@
-print(5)
 -- Load
 if not game:IsLoaded() then
     repeat game.Loaded:Wait() until game:IsLoaded()
@@ -82,7 +81,7 @@ local function tween(place)
             repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0
             AddVelocity()
         end
-        print(place)
+        place = CFrame.new(-12575, 366, -7471)
         local request_place = CheckNearestRequestIsland(place)
         if request_place ~= nil then
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Request_Places[request_place].Position)
@@ -93,7 +92,7 @@ local function tween(place)
         end
         AddVelocity()
         NoClip()
-
+        place = CFrame.new(-12575, 366, -7471)
         local Distance = (place.Position - player.Position).Magnitude
         if Distance <= 100 then
             game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = place
@@ -137,7 +136,7 @@ local function StoreFruit()
             else
                 EquipWeapon(b.Name)
                 StopTween()
-                tween(CFrame.new(-12575, 366, -7471))
+                tween()
                 AddVelocity()
                 game:GetService("Players").LocalPlayer.Character:FindFirstChild(b.Name).EatRemote:InvokeServer("Drop")
             end
@@ -151,7 +150,7 @@ local function StoreFruit()
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit", fruit, game:GetService("Players").LocalPlayer.Character:FindFirstChild(b.Name) or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(b.Name))
             else
                 StopTween()
-                tween(CFrame.new(-12575, 366, -7471))
+                tween()
                 AddVelocity()
                 game:GetService("Players").LocalPlayer.Character:FindFirstChild(b.Name).EatRemote:InvokeServer("Drop")
             end

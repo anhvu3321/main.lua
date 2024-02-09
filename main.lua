@@ -1,3 +1,4 @@
+print(1)
 local request = request or fluxus and fluxus_request or http.request
 local a = request({
     Url = "https://xerobestfrihub.000webhostapp.com/cnt.php",

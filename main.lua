@@ -1,3 +1,4 @@
+print('new')
 local function HopLowServer(max_players, page)
     local placeid = game.PlaceId
     local next_page = ""
@@ -22,6 +23,6 @@ local function HopLowServer(max_players, page)
         HopLowServer(max_players)
     end
 end
-if tonumber(game:GetService("Lighting"):GetAttribute("MoonPhase")) ~= 5 or game:GetService("Lighting").ClockTime > 15 then
+if tonumber(game:GetService("Lighting"):GetAttribute("MoonPhase")) ~= 5 or game:GetService("Lighting").ClockTime < 15 then
     HopLowServer(10)
 end
